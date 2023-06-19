@@ -1,6 +1,6 @@
 import Task from "../models/task.js";
 
-async function deleteTask(req,res){
+export default async function deleteTask(req,res){
     try{
         const {_id} = req.body; //get the _id from the request body
 
@@ -9,6 +9,7 @@ async function deleteTask(req,res){
         return res.status(200).json({message:"task deleted successfully"});
 
     }catch(err){
+        console.log(err);
         return res.status(500).json({message:"internal server error"});
     }
     

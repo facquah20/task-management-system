@@ -28,7 +28,7 @@ async function isValidInputs(obj){
 export default async function addTask(req,res){
     //validates the inputes before saving to database;
     try{
-    const isValid = isValidInputs(req.body);
+    const isValid = await isValidInputs(req.body);
     if(!isValid)return res.status(400).json({message:'Invalid inputs or some fields are missing'});
     const task = new Task({...req.body});
     await task.save();
@@ -36,6 +36,7 @@ export default async function addTask(req,res){
 
 
     }catch(err){
+        //console.log(err);
         return res.status(500).json({message:"internal server error"});
     }
     

@@ -10,6 +10,6 @@ router
 .post('/api/add-new-task',addTask)
 .delete('/api/delete-task',deleteTask)
 .put('/api/update-task',updateTask)
-.get('api/get-task',getTasks);
+.get('/api/get-task',getTasks);
 
 export default router;
