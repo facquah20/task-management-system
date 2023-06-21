@@ -9,34 +9,42 @@ const TaskForm = () => {
     const form = e.target;
     const formData = new FormData(form);
 
-    // Access the form data using `formData.get()`
-    // const title = formData.get('title');
-    // const description = formData.get('description');
-    // const priority = formData.get('priority');
-    // const dueDate = formData.get('dueDate');
-    // const status = formData.get('status');
+   // Access the form data using `formData.get()`
+    const title = formData.get('title');
+    const description = formData.get('description');
+    const priority = formData.get('priority');
+    const dueDate = "2023-06-19T10:00:00.000+00:00"//new Date(formData.get('dueDate')).toISOString();
+    const status = formData.get('status');
+    console.log(dueDate)
+    console.log(status)
+
+    const data = {
+        title,
+        description,
+        priority,
+        dueDate,
+        status
+    }
+    console.log(data)
 
     // Perform any necessary form validation or data processing
     // Here, you can send the task data to your backend or perform any other operations
 
     // Clear the form after submission
 
-    fetch('/api/add-new-task',{
+    fetch('http://localhost:4000/api/add-new-task',{
         method:"POST",
-        body:formData
+        body:JSON.stringify(data)
     })
-    .then(res=>{
-        if(res.ok){
-            console.log(res.message);
-        }
-    })
+    .then(res=>res.json())
+    .then(data=>console.log(data))
     .catch(err=>{
         console.log(err);
     })
 
 
 
-    form.reset();
+    //form.reset();
   };
 
   return (
@@ -53,9 +61,9 @@ const TaskForm = () => {
         <label htmlFor="priority">Priority:</label>
         <select id="priority" name="priority" required>
           <option value="">Select Priority</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
+          <option value="low">low</option>
+          <option value="medium">medium</option>
+          <option value="high">high</option>
         </select>
       </div>
       <div>
