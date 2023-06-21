@@ -1,0 +1,38 @@
+.container{
+    padding:10px;
+}
+.app-name{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:rgba(0, 128, 0, 0.814);
+    
+}
+
+.app-name >p {
+    padding:10px;
+    color:#fff;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    text-align: center;
+}
+.app-features{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+.app-features div{
+    width:300px;
+    border:2px solid greenyellow;
+    padding:5px;
+    margin:5px;
+}
+.app-features div:hover{
+    background-color: aqua;
+    border:0;
+}
+.app-features div p{
+    text-align: center;
+}

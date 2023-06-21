@@ -13,7 +13,7 @@ const TaskForm = () => {
     const title = formData.get('title');
     const description = formData.get('description');
     const priority = formData.get('priority');
-    const dueDate = "2023-06-19T10:00:00.000+00:00"//new Date(formData.get('dueDate')).toISOString();
+    const dueDate = formData.get('dueDate');
     const status = formData.get('status');
     console.log(dueDate)
     console.log(status)
@@ -34,7 +34,7 @@ const TaskForm = () => {
 
     fetch('http://localhost:4000/api/add-new-task',{
         method:"POST",
-        body:JSON.stringify(data)
+        body:formData
     })
     .then(res=>res.json())
     .then(data=>console.log(data))
@@ -49,6 +49,7 @@ const TaskForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+        <h4 style={{textAlign:"center"}}>Create a Task</h4>
       <div>
         <label htmlFor="title">Title:</label>
         <input type="text" id="title" name="title" required />
