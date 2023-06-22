@@ -12,6 +12,19 @@ export default function TaskItem({_id,title,description,priority,status,dueDate}
         .catch(err=>console.log(err));
     }
 
+    const handleTaskCompleted =()=>{
+        fetch('http://localhost:4000/api/update-task',
+            {
+                method:'PUT',
+                body:JSON.stringify({_id,status:'completed'})
+            }
+        ).then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            alert(data.message);
+        })
+    }
+
     return(
         <div className="tast-item">
             <h3 className="tast-title">{title}</h3>
@@ -25,7 +38,7 @@ export default function TaskItem({_id,title,description,priority,status,dueDate}
                 <button className="delete-button" onClick={handleDelete()}>
                     Delete
                 </button>
-                <button>completed</button>
+                <button className="completed-button" onClick={handleTaskCompleted()}>mark</button>
             </div>
         </div>
     )

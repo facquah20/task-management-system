@@ -9,7 +9,7 @@ export default function Task(){
         fetch('http://localhost:4000/api/get-task')
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
+            //console.log(data);
             setItems(data.items);
         })
     },[items])

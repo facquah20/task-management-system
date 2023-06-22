@@ -37,7 +37,10 @@ const TaskForm = () => {
         body:formData
     })
     .then(res=>res.json())
-    .then(data=>console.log(data))
+    .then(data=>{
+      console.log(data);
+      alert(data.message);
+    })
     .catch(err=>{
         console.log(err);
     })
@@ -48,7 +51,9 @@ const TaskForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} action='http://localhost:4000/api/add-new-task'
+    method='POST' encType='multipart/form'
+    >
         <h4 style={{textAlign:"center"}}>Create a Task</h4>
       <div>
         <label htmlFor="title">Title:</label>
