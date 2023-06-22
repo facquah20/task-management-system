@@ -15,8 +15,6 @@ const TaskForm = () => {
     const priority = formData.get('priority');
     const dueDate = formData.get('dueDate');
     const status = formData.get('status');
-    console.log(dueDate)
-    console.log(status)
 
     const data = {
         title,
@@ -25,29 +23,24 @@ const TaskForm = () => {
         dueDate,
         status
     }
-    console.log(data)
 
-    // Perform any necessary form validation or data processing
-    // Here, you can send the task data to your backend or perform any other operations
-
-    // Clear the form after submission
+    
 
     fetch('http://localhost:4000/api/add-new-task',{
         method:"POST",
-        body:formData
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify(data)
     })
     .then(res=>res.json())
     .then(data=>{
-      console.log(data);
       alert(data.message);
+      form.reset();
     })
     .catch(err=>{
         console.log(err);
     })
-
-
-
-    //form.reset();
   };
 
   return (

@@ -2,26 +2,32 @@ import "../styles/taskItem.css"
 
 export default function TaskItem({_id,title,description,priority,status,dueDate}){
 
-    const handleDelete=()=>{
+    const handleDelete=(_id)=>{
         fetch('http://localhost:4000/api/delete-task',{
             method:"DELETE",
-            body:JSON.stringify({_id})
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify({_id:_id})
         })
         .then(res=>res.json())
-        .then(data=>console.log(data))
+        .then(data=>alert(data.message))
         .catch(err=>console.log(err));
     }
 
-    const handleTaskCompleted =()=>{
+    const handleTaskCompleted =(_id)=>{
         fetch('http://localhost:4000/api/update-task',
             {
                 method:'PUT',
-                body:JSON.stringify({_id,status:'completed'})
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify({_id:_id,status:'completed'})
             }
         ).then(res=>res.json())
         .then(data=>{
-            console.log(data);
             alert(data.message);
+            //alert(data.message);
         })
     }
 
@@ -35,10 +41,10 @@ export default function TaskItem({_id,title,description,priority,status,dueDate}
                 <p  className="task-due-date">Due-Date: {dueDate}</p>
             </div>
             <div>
-                <button className="delete-button" onClick={handleDelete()}>
+                <button className="delete-button" onClick={()=>handleDelete(_id)}>
                     Delete
                 </button>
-                <button className="completed-button" onClick={handleTaskCompleted()}>mark</button>
+                <button className="completed-button" onClick={()=>handleTaskCompleted(_id)}>mark</button>
             </div>
         </div>
     )

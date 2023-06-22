@@ -1,7 +1,6 @@
 
 import "../styles/taskContainer.css";
 import TaskForm from "./taskForm";
-import TaskItem from "./taskItem";
 import Task from "./tasks";
 export default function TaskContainer(){
 
@@ -23,7 +22,6 @@ export default function TaskContainer(){
             </div>
             <TaskForm/>
             <Task/>
-            <TaskItem/>
         </div>
     );
 }
